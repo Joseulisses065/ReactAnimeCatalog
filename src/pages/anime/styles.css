@@ -1,0 +1,8 @@
+.anime-container{
+    display: flex;
+    justify-content: space-between;
+}
+.anime-card{
+    border: 2px solid black ;
+    border-radius: 8px;
+}

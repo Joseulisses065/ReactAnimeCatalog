@@ -1,0 +1,44 @@
+:root{
+    --blue-main:rgb(19, 115, 240);
+    --shadow-main:rgb(153, 153, 153);
+    --ice-main: rgb(245, 250, 255);
+}
+.form-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.form-container h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-form{
+    border-radius: 5px ;
+    padding: 0 24px;
+    height: 40px;
+    margin-bottom: 15px;
+    border: 1px solid var(--shadow-main);
+
+}
+
+.form-button{
+    padding: 0 24px;
+    background-color: var(--blue-main);
+    color: var(--ice-main);
+    height: 40px;
+    border: 1px solid ;
+    border-radius: 8px ;
+    cursor: pointer;
+    font-weight: 700;
+    width: 100%;
+    text-decoration: none;
+    transition: filter 0.2s;
+}
+.form-button:hover{
+    filter: brightness(80%);
+}
+
