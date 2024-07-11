@@ -12,8 +12,7 @@ export default function RoutesApp(){
             <Routes>
                 <Route path="/" exact Component={Animes}/>
                 <Route path="/animes" Component={Animes}/>
-                <Route path="/animes/new" Component={NewAnime}/>
-                <Route path="/animes" Component={Animes}/>
+                <Route path="/animes/new/:animeId" Component={NewAnime}/>
 
             </Routes>
         </BrowserRouter>

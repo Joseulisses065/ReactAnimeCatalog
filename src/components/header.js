@@ -5,7 +5,7 @@ export default function Header(){
     return(
         <nav className="navbar navbar-dark bg-dark px-5">
             <a className="navbar-brand">Anime</a>
-            <div><Link className="btn btn-primary" to={"/animes/new"}><FiPlus size={18}/> Add</Link></div>
+            <div><Link className="btn btn-primary" to={"/animes/new/0"}><FiPlus size={18}/> Add</Link></div>
         </nav>
     );
 }

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../../services/api";
 export default function NewAnime() {
   const [id, setId] = useState(null);
@@ -9,8 +9,34 @@ export default function NewAnime() {
   const [releaseDate, setReleaseDate] = useState("");
   const [whereToWatch, setWhereToWatch] = useState("");
 
+  const { animeId } = useParams();
+
   const navigate = useNavigate();
-  async function createNewAnime(e) {
+  useEffect(() => {
+    if (animeId === "0") {
+      return;
+    } else {
+      loadAnime();
+    }
+  }, [animeId]);
+
+
+  async function loadAnime() {
+    try {
+      const response = await api.get(`/animes/${animeId}`)
+      setId(response.data.id)
+      setCategory(response.data.category)
+      setDescription(response.data.description)
+      setName(response.data.name)
+      setReleaseDate(response.data.releaseDate)
+      setWhereToWatch(response.data.whereToWatch)
+    } catch (error) {
+      alert("Error recovering Anime! Try again");
+      navigate('/animes')
+    }
+   
+  }
+  async function saveOrUpdate(e) {
     e.preventDefault();
     const data = {
       category,
@@ -20,9 +46,16 @@ export default function NewAnime() {
       whereToWatch,
     };
     try {
-      const response = await api.post("/animes",data);
+      if(animeId === '0'){
+        await api.post("/animes", data);
+        alert("passou");
+        navigate("/animes");
+      }else{
+        await api.put(`/animes/${animeId}`, data);
       alert("passou");
-      navigate("/animes");
+      navigate("/animes");   
+      }
+       
     } catch (err) {
       alert("Insert failed! Try again!");
     }
@@ -31,7 +64,7 @@ export default function NewAnime() {
   return (
     <div className=" d-flex">
       <div className="form-container ">
-        <form className="form" onSubmit={createNewAnime}>
+        <form className="form" onSubmit={saveOrUpdate}>
           <div>
             <input
               typeof="text"
